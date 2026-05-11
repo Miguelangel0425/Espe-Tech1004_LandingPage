@@ -296,7 +296,6 @@ body {
 .logo-footer img {
     height: 60px;
     margin-bottom: 20px;
-    filter: brightness(0) invert(1); /* Pone el logo en blanco si es PNG transparente */
 }
 
 /* === RESPONSIVE === */
