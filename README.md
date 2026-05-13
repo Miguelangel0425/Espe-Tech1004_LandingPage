@@ -89,7 +89,3 @@ Luego accede en tu navegador a: **http://localhost:8080**
 | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) HTML5 | Maquetación y contenido del evento |
 | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) Docker | Contenerización para despliegue consistente |
 | ![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white) Nginx Alpine | Servidor web ligero y optimizado |
-
----
-
-🔗 [github.com/Miguelangel0425](https://github.com/Miguelangel0425)
