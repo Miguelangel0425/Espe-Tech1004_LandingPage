@@ -217,10 +217,12 @@ body {
 
 /* === GRID DE ZONAS === */
 .grid-zonas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
+    display: flex;            
+    flex-wrap: wrap;          
+    justify-content: center;  
+    gap: 30px;                
 }
+
 .card {
     background: var(--white);
     padding: 30px 20px;
@@ -229,22 +231,31 @@ body {
     border-bottom: 4px solid var(--bg-light);
     transition: 0.4s;
     box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    
+    /* Configuración para que quepan exactamente 3 por fila */
+    width: calc(33.333% - 30px); 
+    min-width: 280px;  
+    max-width: 350px;  
 }
+
 .card:hover {
     border-bottom-color: var(--secondary-color-2);
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
+
 .card .icon {
     font-size: 3rem;
     display: block;
     margin-bottom: 15px;
 }
+
 .card h3 {
     font-family: var(--font-main);
     margin-bottom: 10px;
     color: var(--primary-color);
 }
+
 .card small {
     display: block;
     margin-top: 10px;
