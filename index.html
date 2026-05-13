@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FEDETEC ESPE - Feria de Desarrollo Tecnológico e Innovación</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Actualicé la versión a 6.0 para obligar al navegador a refrescar -->
+    <link rel="stylesheet" href="css/style.css?v=6.0">
+    <!-- Tu nuevo Favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/icons/Logo_ESPE.ico">
 </head>
 <body>
     <header class="main-header">
         <div class="container header-flex">
-            <div class="logo">
-                <img src="assets/img/logo.png" alt="Logo FEDETEC ESPE">
-            </div>
+            <!-- LOGO SUPERIOR ELIMINADO -->
             <nav class="main-nav">
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
@@ -30,9 +30,17 @@
     <main>
         <section id="inicio" class="hero">
             <div class="container hero-content">
-                <h1>FEDETEC ESPE</h1>
-                <h2 class="hero-title">Feria de Desarrollo Tecnológico e Innovación</h2>
-                <p class="subtitle">"Innovación tecnológica al servicio de la seguridad y defensa del país"</p>
+                
+                <!-- EL LOGO ESPECTACULAR EN EL CENTRO -->
+                <div class="hero-logo">
+                    <img src="assets/img/logo.png" alt="Logo FEDETEC ESPE">
+                </div>
+                
+                <!-- Textos ocultos para que no repitan lo que ya dice tu logo -->
+                <!-- <h1>FEDETEC ESPE</h1> -->
+                <!-- <h2 class="hero-title">Feria de Desarrollo Tecnológico e Innovación</h2> -->
+                
+                <p class="subtitle" style="margin-top: 20px;">"Innovación tecnológica al servicio de la seguridad y defensa del país"</p>
                 <div class="hero-btns">
                     <a href="#zonas" class="btn btn-primary">Explorar Zonas</a>
                 </div>
@@ -80,32 +88,37 @@
             <div class="container">
                 <h2 class="section-title">Zonas Tecnológicas</h2>
                 <div class="grid-zonas">
+                    <!-- TARJETAS CON TUS IMÁGENES EXACTAS -->
                     <article class="card">
-                        <span class="icon">🏭</span>
+                        <img src="assets/img/Zona1.jpg" alt="Zona 1" class="zona-img">
                         <h3>Zona 1</h3>
                         <p>Tecnologías Industriales y Energía</p>
                         <small>Automatización, Industria 4.0, Energías Renovables</small>
                     </article>
+                    
                     <article class="card">
-                        <span class="icon">📡</span>
+                        <img src="assets/img/Zona2.jpg" alt="Zona 2" class="zona-img">
                         <h3>Zona 2</h3>
                         <p>Telecomunicaciones y Sistemas</p>
                         <small>IA, IoT, Redes, Desarrollo de Software</small>
                     </article>
+                    
                     <article class="card">
-                        <span class="icon">🛡️</span>
+                        <img src="assets/img/Zona3.jpg" alt="Zona 3" class="zona-img">
                         <h3>Zona 3</h3>
                         <p>Defensa y Seguridad</p>
                         <small>Ciberseguridad, Simulación, Drones, Tecnología Militar</small>
                     </article>
+                    
                     <article class="card">
-                        <span class="icon">🚀</span>
+                        <img src="assets/img/Zona4.jpg" alt="Zona 4" class="zona-img">
                         <h3>Zona 4</h3>
                         <p>Innovación y Emprendimiento</p>
                         <small>Startups, Proyectos Innovadores, Transferencia Tecnológica</small>
                     </article>
+                    
                     <article class="card">
-                        <span class="icon">🤝</span>
+                        <img src="assets/img/Zona5.jpg" alt="Zona 5" class="zona-img">
                         <h3>Zona 5</h3>
                         <p>Impacto Social y Vinculación</p>
                         <small>Tecnología para desarrollo social, Innovación social</small>
@@ -146,10 +159,45 @@
     <footer class="main-footer">
         <div class="container">
             <div class="logo-footer">
+                <!-- Tu ajuste del logo ESPE en el footer -->
                 <img src="assets/img/logo_ESPE.png" alt="ESPE">
             </div>
             <p>&copy; 2026 Universidad de las Fuerzas Armadas - ESPE. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>
+<!-- === MODAL DE REGISTRO === -->
+    <div id="registro" class="modal-bg">
+        <div class="modal-content">
+            <!-- Botón para cerrar la ventana (la 'X') -->
+            <a href="#" class="close-btn">X</a>
+            
+            <h2>Registro FEDETEC</h2>
+            <p>Completa tus datos para asegurar tu cupo.</p>
+            
+            <form class="registro-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
+                </div>
+                
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" name="correo" required placeholder="juan@ejemplo.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo">¿Cómo participas?</label>
+                    <select id="tipo" name="tipo">
+                        <option value="estudiante">Estudiante ESPE</option>
+                        <option value="docente">Docente / Investigador</option>
+                        <option value="empresa">Empresa / Sector Productivo</option>
+                        <option value="publico">Público General</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Confirmar Registro</button>
+            </form>
+        </div>
+    </div>
 </html>

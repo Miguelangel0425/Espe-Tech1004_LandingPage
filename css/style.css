@@ -45,6 +45,13 @@ body {
 .text-center { text-align: center; }
 .text-white { color: var(--white) !important; }
 
+/* 🛡️ EL ESCUDO CONTRA IMÁGENES GIGANTES 🛡️ */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* === HEADER === */
 .main-header {
     background: var(--white);
@@ -61,7 +68,10 @@ body {
     align-items: center;
 }
 
-.logo img { height: 50px; }
+/* Menú a la izquierda porque quitamos el logo superior */
+.main-nav {
+    margin-right: auto;
+}
 
 .main-nav ul {
     display: flex;
@@ -119,20 +129,28 @@ body {
     text-align: center;
 }
 
-.hero h1 {
-    font-family: var(--font-main);
-    font-size: 4.5rem;
-    color: var(--primary-color);
-    line-height: 1.1;
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.hero-title {
-    font-family: var(--font-body);
-    font-size: 1.8rem;
-    color: var(--secondary-color-2);
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    font-weight: bold;
+/* AQUÍ CONTROLAMOS EL LOGO CENTRAL */
+.hero-logo {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo img {
+    height: auto;
+    max-height: 350px; /* Tamaño perfecto, ni muy grande ni muy chico */
+    width: auto;
+    max-width: 90%; 
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2)); 
 }
 
 .hero .subtitle {
@@ -215,7 +233,7 @@ body {
     border-color: var(--secondary-color-2);
 }
 
-/* === GRID DE ZONAS === */
+/* === GRID DE ZONAS (IMÁGENES 3 Y 2) === */
 .grid-zonas {
     display: flex;            
     flex-wrap: wrap;          
@@ -225,12 +243,12 @@ body {
 
 .card {
     background: var(--white);
-    padding: 30px 20px;
+    padding: 20px;
     border-radius: 8px;
     text-align: center;
     border-bottom: 4px solid var(--bg-light);
     transition: 0.4s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     
     /* Configuración para que quepan exactamente 3 por fila */
     width: calc(33.333% - 30px); 
@@ -241,13 +259,17 @@ body {
 .card:hover {
     border-bottom-color: var(--secondary-color-2);
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.card .icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 15px;
+/* AQUÍ DOMAMOS LAS IMÁGENES DE LAS ZONAS */
+.card .zona-img {
+    width: 100%; 
+    height: 180px; /* Todas las imágenes medirán lo mismo de alto */
+    object-fit: cover; /* Recorta la imagen elegante para que no se estire */
+    border-radius: 6px; 
+    margin-bottom: 15px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
 }
 
 .card h3 {
@@ -304,15 +326,141 @@ body {
     padding: 40px 0 20px;
     text-align: center;
 }
+
 .logo-footer img {
-    height: 60px;
-    margin-bottom: 20px;
+    height: 70px; /* Le subí un poquitito el tamaño para que el escudo luzca más */
+    width: auto;
+    /* La magia para centrar un elemento bloque: margen arriba 0, lados auto, abajo 20px */
+    margin: 0 auto 20px auto; 
 }
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
     .header-flex { flex-direction: column; gap: 15px; }
-    .hero h1 { font-size: 3rem; }
+    .hero-logo img { max-height: 200px; }
     .grid-2-col { grid-template-columns: 1fr; gap: 30px; }
     .section-title.left { text-align: center; }
+    .card { width: 100%; max-width: 400px; }
+}
+/* ==========================================
+   === VENTANA MODAL DE REGISTRO (POP-UP) === 
+   ========================================== */
+
+/* Fondo oscuro que cubre toda la pantalla */
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999; /* Para que quede por encima de todo */
+    
+    /* Magia para que esté oculto por defecto */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    
+    /* Centrar el contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cuando se le da click al botón y el enlace es #registro, se muestra */
+.modal-bg:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* La caja blanca del formulario */
+.modal-content {
+    background: var(--white);
+    width: 90%;
+    max-width: 450px; /* Ancho máximo del formulario */
+    padding: 40px 30px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-bg:target .modal-content {
+    transform: translateY(0); /* Animación de caída suave */
+}
+
+/* El botón de cerrar (X) */
+.close-btn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: var(--primary-color);
+    color: var(--white);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: var(--font-main);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+}
+
+.close-btn:hover {
+    background: var(--secondary-color-2);
+}
+
+/* Estilos internos del texto y formulario */
+.modal-content h2 {
+    font-family: var(--font-main);
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    text-align: center;
+    color: var(--secondary-color-1);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--secondary-color-2);
+    outline: none; /* Quita el borde azul feo por defecto de los navegadores */
+}
+
+/* Botón de enviar formulario que ocupa todo el ancho */
+.btn-block {
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
 }
